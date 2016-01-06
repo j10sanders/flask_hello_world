@@ -9,18 +9,11 @@
     </div>
     <div class="col-md-10">
         <h1>
-            {{ entry.title }}
+            <a href = "/entry/{{entry.id}}">{{ entry.title }}</a>
         </h1>
+        </a>
         {{ entry.content | markdown }}
     </div>
-</div>
-{% endmacro %}
-
-{% macro render_single_entry(entry) %}
-<div class="col-md-10">
-    <h1>
-        <a href="{{url_for('view_entry', id=entry.id)}}">{(entry.title)}</a>
-    </h1>
-    {( entry.content | markdown }}
+   
 </div>
 {% endmacro %}

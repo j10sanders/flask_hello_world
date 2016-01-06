@@ -32,7 +32,7 @@ end
 # unset irrelavent variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/ubuntu/workspace/thinkful/projects/flask_hello_world/env"
+set -gx VIRTUAL_ENV "/home/ubuntu/workspace/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

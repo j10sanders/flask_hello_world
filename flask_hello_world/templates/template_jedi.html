@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block title %}
+Hello Jedi...
+{% endblock %}
 
 {% block content %}
     <h1>Hello {{firstname.title() + " " + lastname.title()}}</h1>

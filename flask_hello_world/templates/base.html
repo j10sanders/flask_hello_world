@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hello, Jedi...</title>
+        <title>
+        {% block title %}{% endblock %}
+        </title>
+        
     </head>
     <body>
       {% block content %}{% endblock %}

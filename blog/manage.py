@@ -2,17 +2,18 @@ import os
 from flask.ext.script import Manager
 from blog import app
 from blog.database import session, Entry
-from getpass import getpass
-from werkzeug.security import generate_password_hash
-from blog.database import User
+from flask.ext.migrate import Migrate, MigrateCommand
+from blog.database import Base
+
+
 
 manager = Manager(app)
 
 @manager.command
 def run():
     port = int(os.environ.get('PORT', 8080))
+    print("https://jps-python-jonsanders-1.c9.io/")
     app.run(host='0.0.0.0', port=port)
-
 
 @manager.command
 def seed():
@@ -26,7 +27,12 @@ def seed():
         session.add(entry)
     session.commit()
     
-    
+from getpass import getpass
+
+from werkzeug.security import generate_password_hash
+
+from blog.database import User
+
 @manager.command
 def adduser():
     name = input("Name: ")
@@ -36,6 +42,7 @@ def adduser():
         return
 
     password = ""
+    password_2 = ""
     while len(password) < 8 or password != password_2:
         password = getpass("Password: ")
         password_2 = getpass("Re-enter password: ")
@@ -44,5 +51,14 @@ def adduser():
     session.add(user)
     session.commit()
     
+class DB(object):
+    def __init__(self, metadata):
+        self.metadata = metadata
+
+migrate = Migrate(app, DB(Base.metadata))
+manager.add_command('db', MigrateCommand)
+
 if __name__ == "__main__":
     manager.run()
+    
+    
